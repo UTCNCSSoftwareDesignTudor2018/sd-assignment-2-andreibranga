@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestaurantDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="RestaurantDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AspNetRoles" EntityType="RestaurantDbModel.AspNetRole" />
+    <EntitySet Name="AspNetUserClaims" EntityType="RestaurantDbModel.AspNetUserClaim" />
+    <EntitySet Name="AspNetUserLogins" EntityType="RestaurantDbModel.AspNetUserLogin" />
+    <EntitySet Name="AspNetUsers" EntityType="RestaurantDbModel.AspNetUser" />
+    <EntitySet Name="Users" EntityType="RestaurantDbModel.User" />
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="RestaurantDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="RestaurantDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_AspNetUsers" Association="RestaurantDbModel.FK_Users_AspNetUsers">
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="AspNetUserRoles" Association="RestaurantDbModel.AspNetUserRoles">
+      <End Role="AspNetRole" EntitySet="AspNetRoles" />
+      <End Role="AspNetUser" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <EntitySet Name="FoodTypes" EntityType="RestaurantDbModel.FoodType" />
+    <EntitySet Name="Histories" EntityType="RestaurantDbModel.History" />
+    <EntitySet Name="Restaurants" EntityType="RestaurantDbModel.Restaurant" />
+    <EntitySet Name="RestaurantFoodTypes" EntityType="RestaurantDbModel.RestaurantFoodType" />
+    <EntitySet Name="Reviews" EntityType="RestaurantDbModel.Review" />
+    <AssociationSet Name="FK_RestaurantFoodTypes_FoodType" Association="RestaurantDbModel.FK_RestaurantFoodTypes_FoodType">
+      <End Role="FoodType" EntitySet="FoodTypes" />
+      <End Role="RestaurantFoodType" EntitySet="RestaurantFoodTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_History_Users" Association="RestaurantDbModel.FK_History_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="History" EntitySet="Histories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RestaurantFoodTypes_Restaurant" Association="RestaurantDbModel.FK_RestaurantFoodTypes_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="RestaurantFoodType" EntitySet="RestaurantFoodTypes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Review_Restaurant" Association="RestaurantDbModel.FK_Review_Restaurant">
+      <End Role="Restaurant" EntitySet="Restaurants" />
+      <End Role="Review" EntitySet="Reviews" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AspNetRole">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUsers" Relationship="RestaurantDbModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaim">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogin">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
+  </EntityType>
+  <EntityType Name="AspNetUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+    <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUserClaims" Relationship="RestaurantDbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+    <NavigationProperty Name="AspNetUserLogins" Relationship="RestaurantDbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+    <NavigationProperty Name="Users" Relationship="RestaurantDbModel.FK_Users_AspNetUsers" FromRole="AspNetUser" ToRole="User" />
+    <NavigationProperty Name="AspNetRoles" Relationship="RestaurantDbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AspNetUser" Relationship="RestaurantDbModel.FK_Users_AspNetUsers" FromRole="User" ToRole="AspNetUser" />
+    <NavigationProperty Name="Histories" Relationship="RestaurantDbModel.FK_History_Users" FromRole="User" ToRole="History" />
+  </EntityType>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Type="RestaurantDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RestaurantDbModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaim">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Type="RestaurantDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="RestaurantDbModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogin">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_AspNetUsers">
+    <End Type="RestaurantDbModel.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+    <End Type="RestaurantDbModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUser">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AspNetUserRoles">
+    <End Type="RestaurantDbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+    <End Type="RestaurantDbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+  </Association>
+  <EntityType Name="FoodType">
+    <Key>
+      <PropertyRef Name="IDFoodType" />
+    </Key>
+    <Property Name="IDFoodType" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="RestaurantFoodTypes" Relationship="RestaurantDbModel.FK_RestaurantFoodTypes_FoodType" FromRole="FoodType" ToRole="RestaurantFoodType" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="IDHistory" />
+    </Key>
+    <Property Name="IDHistory" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDRestaurant" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Action" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="RestaurantDbModel.FK_History_Users" FromRole="History" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="IDRestaurant" />
+    </Key>
+    <Property Name="IDRestaurant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Details" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalTables" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="RestaurantFoodTypes" Relationship="RestaurantDbModel.FK_RestaurantFoodTypes_Restaurant" FromRole="Restaurant" ToRole="RestaurantFoodType" />
+    <NavigationProperty Name="Reviews" Relationship="RestaurantDbModel.FK_Review_Restaurant" FromRole="Restaurant" ToRole="Review" />
+  </EntityType>
+  <EntityType Name="RestaurantFoodType">
+    <Key>
+      <PropertyRef Name="IDRestaurantFoodTypes" />
+    </Key>
+    <Property Name="IDRestaurantFoodTypes" Type="Int32" Nullable="false" />
+    <Property Name="IDFoodType" Type="Int32" Nullable="false" />
+    <Property Name="IDRestaurant" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="FoodType" Relationship="RestaurantDbModel.FK_RestaurantFoodTypes_FoodType" FromRole="RestaurantFoodType" ToRole="FoodType" />
+    <NavigationProperty Name="Restaurant" Relationship="RestaurantDbModel.FK_RestaurantFoodTypes_Restaurant" FromRole="RestaurantFoodType" ToRole="Restaurant" />
+  </EntityType>
+  <EntityType Name="Review">
+    <Key>
+      <PropertyRef Name="IDReview" />
+    </Key>
+    <Property Name="IDReview" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Rating" Type="Int32" Nullable="false" />
+    <Property Name="Body" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReviewerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IDRestaurant" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Restaurant" Relationship="RestaurantDbModel.FK_Review_Restaurant" FromRole="Review" ToRole="Restaurant" />
+  </EntityType>
+  <Association Name="FK_RestaurantFoodTypes_FoodType">
+    <End Type="RestaurantDbModel.FoodType" Role="FoodType" Multiplicity="1" />
+    <End Type="RestaurantDbModel.RestaurantFoodType" Role="RestaurantFoodType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FoodType">
+        <PropertyRef Name="IDFoodType" />
+      </Principal>
+      <Dependent Role="RestaurantFoodType">
+        <PropertyRef Name="IDFoodType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_History_Users">
+    <End Type="RestaurantDbModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="RestaurantDbModel.History" Role="History" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="History">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RestaurantFoodTypes_Restaurant">
+    <End Type="RestaurantDbModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+    <End Type="RestaurantDbModel.RestaurantFoodType" Role="RestaurantFoodType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="IDRestaurant" />
+      </Principal>
+      <Dependent Role="RestaurantFoodType">
+        <PropertyRef Name="IDRestaurant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Review_Restaurant">
+    <End Type="RestaurantDbModel.Restaurant" Role="Restaurant" Multiplicity="1" />
+    <End Type="RestaurantDbModel.Review" Role="Review" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurant">
+        <PropertyRef Name="IDRestaurant" />
+      </Principal>
+      <Dependent Role="Review">
+        <PropertyRef Name="IDRestaurant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

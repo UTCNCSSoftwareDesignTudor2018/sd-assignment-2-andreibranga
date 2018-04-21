@@ -1,0 +1,44 @@
+﻿<!-- HEADER -->
+<header id="header">
+  <div id="logo-group">
+
+    <!-- PLACE YOUR LOGO HERE -->
+    <span id="logo">
+        <h4><strong><span style="color: #ff0000;">StudentManager</span></strong></h4>
+    </span>
+    <!-- END LOGO PLACEHOLDER -->
+    @if (Request.IsAuthenticated)
+    {
+    }
+  </div>
+  <!-- collapse menu button -->
+
+  @if (!Url.RequestContext.RouteData.Values.Values.Contains("Login"))
+  {
+    <div id="hide-menu" class="btn-header">
+      <span>
+        <a href="javascript:void(0);" data-action="toggleMenu" title="Collapse Menu">
+          <i class="fa fa-reorder"></i>
+        </a>
+      </span>
+    </div>
+  }
+  <!-- end collapse menu -->
+
+  @if (Request.IsAuthenticated)
+  {
+  }
+  <section id="top-right">
+    @if (Model is HelperResult)
+    {
+      @Model
+    }
+    else
+    {
+      <div class="pull-right">
+        @Html.Partial("_TopRight")
+      </div>
+    }
+  </section>
+</header>
+<!-- END HEADER -->
