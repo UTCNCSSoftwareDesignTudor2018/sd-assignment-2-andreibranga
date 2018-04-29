@@ -49,18 +49,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\AspNetRole.cs">
-      <DependentUpon>StudentDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AspNetUser.cs">
-      <DependentUpon>StudentDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AspNetUserClaim.cs">
-      <DependentUpon>StudentDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\AspNetUserLogin.cs">
-      <DependentUpon>StudentDbModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Enrollment.cs">
       <DependentUpon>StudentDbModel.tt</DependentUpon>
     </Compile>

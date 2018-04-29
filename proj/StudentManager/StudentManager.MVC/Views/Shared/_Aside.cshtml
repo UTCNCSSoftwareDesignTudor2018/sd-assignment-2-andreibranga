@@ -32,110 +32,22 @@
         </ul>
       </li>
 
-      @if (User.IsInRole("AprobareComenzi") || User.IsInRole("Admin"))
-  {
-    <li class="@Html.RouteIf("Aprobari", "active")">
-      <a href="#" title="Aprobari">
-        <i class="fa fa-lg fa-fw fa-thumbs-up"></i> <span class="menu-item-parent">Aprobari</span>
-      </a>
-      <ul>
-        <li class="@Html.RouteIf("Aprobari/Index", "active")">
-          <a href="@Url.Action("Index", "Aprobari")" title="Aprobare">
-            <span class="menu-item-parent">Curente</span>
-          </a>
-        </li>
-      </ul>
-    </li>
-}
+     @if (User.IsInRole("TEACHER") || User.IsInRole("ADMIN"))
+     {
+         <li class="@Html.RouteIf("Subject", "active")">
+             <a href="#" title="Dashboard">
+                 <i class="fa fa-lg fa-fw  fa-book"></i> <span class="menu-item-parent">Subjects</span>
+             </a>
+             <ul>
+                 <li class="@Html.RouteIf("Subject", "active")">
+                     <a href="@Url.Action("Index", "Subject")" title="Dashboard">
+                         <span class="menu-item-parent">Manage Subjects </span>
+                     </a>
+                 </li>
+             </ul>
+         </li>
 
-      @if (User.IsInRole("Aprovizionare") || User.IsInRole("Admin"))
-      { 
-    <li class="@Html.RouteIf("Necesare", "active") @Html.RouteIf("Oferte", "active")">
-      <a href="#" title="Aprovizionare">
-        <i class="fa fa-lg fa-fw fa-cube"></i> <span class="menu-item-parent">Aprovizionare</span>
-      </a>
-      <ul>
-        <li class="@Html.RouteIf("Necesare/Index", "active")">
-          <a href="@Url.Action("Index", "Necesare")" title="Dashboard">
-            <span class="menu-item-parent">Lista Necesare</span>
-          </a>
-        </li>
-
-        <li class="@Html.RouteIf("Necesare/Create", "active")">
-          <a href="@Url.Action("Create", "Necesare")" title="Dashboard">
-            <span class="menu-item-parent">Adauga Necesar</span>
-          </a>
-        </li>
-
-        <li class="@Html.RouteIf("Oferte", "active")">
-          <a href="#" title="Dashboard">
-            <i class=""></i> <span class="menu-item-parent">Cereri - Oferte</span>
-          </a>
-          <ul>
-            <li class="@Html.RouteIf("Oferte/Index", "active")">
-              <a href="@Url.Action("Index", "Oferte")" title="Dashboard">
-                <span class="menu-item-parent">Manage</span>
-              </a>
-            </li>
-          
-          </ul>
-        </li>
-        <li class="@Html.RouteIf("Gestiune", "active")">
-          <a href="#" title="Dashboard">
-            <i class=""></i> <span class="menu-item-parent">Gestiune</span>
-          </a>
-          <ul>
-            <li class="@Html.RouteIf("Stoc/Index", "active")">
-              <a href="@Url.Action("Index", "Stoc")" title="Dashboard">
-                <span class="menu-item-parent">Stocuri</span>
-              </a>
-            </li>
-            <li class="@Html.RouteIf("Gestiune/BonTransferAdd", "active")">
-              <a href="@Url.Action("BonTransferAdd", "Gestiune")" title="Dashboard">
-                <span class="menu-item-parent">Bon transfer</span>
-              </a>
-            </li>
-            <li class="@Html.RouteIf("Gestiune/BonConsumAdd", "active")">
-              <a href="@Url.Action("BonConsumAdd", "Gestiune")" title="Dashboard">
-                <span class="menu-item-parent">Bon consum</span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
-      </ul>
-    </li>
-      }
-
-
-      @if (User.IsInRole("admin") || User.IsInRole("beneficiary_admin"))
-  {
-    <li class="@Html.RouteIf("RolesAdmin;UsersAdmin", "active")">
-      <a href="#" title="Products">
-        <i class="fa fa-lg fa-fw fa fa-users"></i> <span class="menu-item-parent">Users Administration</span>
-      </a>
-      <ul>
-        <li class="@Html.RouteIf("UsersAdmin", "active")">
-          <a href="@Url.Action("Index", "UsersAdmin")" title="Dashboard">
-            <span class="menu-item-parent"> Users</span>
-          </a>
-        </li>
-        @if (User.IsInRole("admin"))
-    {
-      <li class="@Html.RouteIf("RolesAdmin", "active")">
-        <a href="@Url.Action("Index", "RolesAdmin")" title="Dashboard">
-          <span class="menu-item-parent"> Roles</span>
-        </a>
-      </li>
-}
-        <li class="@Html.RouteIf("UserService", "active")">
-          <a href="@Url.Action("Index", "UserService")" title="Dashboard">
-            <span class="menu-item-parent"> Service Users</span>
-          </a>
-        </li>
-      </ul>
-    </li>
-}
+     }
 
       <li class="@Html.RouteIf("Manage", "active")">
         <a href="#" title="User">

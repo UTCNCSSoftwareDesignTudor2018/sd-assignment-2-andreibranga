@@ -13,7 +13,6 @@ C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\Resta
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\Restaurant.Business.dll
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\Restaurant.Business.pdb
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\Restaurant.Data.dll
-C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\EntityFramework.dll
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\Restaurant.Data.pdb
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\Restaurant.Data.dll.config
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\EntityFramework.xml

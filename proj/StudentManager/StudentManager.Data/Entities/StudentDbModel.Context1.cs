@@ -25,10 +25,6 @@ namespace Restaurant.Data.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
-        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
-        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
-        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Enrollment> Enrollments { get; set; }

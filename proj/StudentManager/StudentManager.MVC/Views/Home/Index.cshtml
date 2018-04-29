@@ -1,4 +1,26 @@
-@{
-  ViewBag.Title = "Home Page";
-}
+ <div class="row">
+    <div class="col-sm-12">
 
+        <div class="well">
+
+            <h1>
+                <span class="semi-bold">Student Manager</span> @*<i class="ultra-light">Manager</i>*@ <sup class="badge bg-color-red bounceIn animated">v 1.0</sup> <br>
+                <small class="text-danger slideInRight fast animated">
+                   @if (User.IsInRole("TEACHER"))
+                   {
+                    <strong>Welcome teacher, @ViewBag.Name</strong> 
+                   }
+                    @if (User.IsInRole("ADMIN"))
+                    {
+                    <strong>Welcome admin, @ViewBag.Name</strong> 
+                    }
+                    @if (User.IsInRole("STUDENT"))
+                    {
+                    <strong>Welcome student, @ViewBag.Name</strong> 
+                    }
+
+                </small>
+            </h1>
+        </div>
+    </div>
+</div>

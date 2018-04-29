@@ -22,6 +22,7 @@ namespace Restaurant.MVC.Controllers
     public ActionResult Index()
     {
       //int curUserIDTehnician = UserHelpers.GetCurUserIDTehnician(User);
+        ViewBag.Name = User.Identity.Name;
       return View();
     }
 
