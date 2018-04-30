@@ -6,6 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Restaurant.Business.Repos.Repositories;
+using Restaurant.Data.Entities;
+using Restaurant.MVC.Helpers;
 using Restaurant.MVC.Models;
 using Restaurant.MVC.Models.Account;
 
@@ -16,7 +19,7 @@ namespace Restaurant.MVC.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private IUserRepository userRepository;
         public ManageController()
         {
         }
@@ -25,6 +28,7 @@ namespace Restaurant.MVC.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            userRepository=new UserRepository(new StudentDbEntities());
         }
 
         public ApplicationSignInManager SignInManager
@@ -63,7 +67,7 @@ namespace Restaurant.MVC.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
+            
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
@@ -73,6 +77,7 @@ namespace Restaurant.MVC.Controllers
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            
             return View(model);
         }
 

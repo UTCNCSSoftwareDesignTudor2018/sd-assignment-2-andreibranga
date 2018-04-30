@@ -1,0 +1,11 @@
+﻿      @if (User.IsInRole("STUDENT"))
+      {
+          if (ViewBag.HasProfile)
+          {
+              @Html.Action("Edit", "UserViewModels");
+          }
+          else
+          {
+              @Html.Action("Create", "UserViewModels");
+          }
+      }

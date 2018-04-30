@@ -15,7 +15,6 @@ C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\Stude
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\Restaurant.Data.dll
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\Restaurant.Data.pdb
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\Restaurant.Data.dll.config
-C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\bin\Debug\EntityFramework.xml
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\obj\Debug\StudentManager.Business.csprojResolveAssemblyReference.cache
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\obj\Debug\StudentManager.Business.csproj.CoreCompileInputs.cache
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Business\obj\Debug\StudentManager.Business.csproj.CopyComplete

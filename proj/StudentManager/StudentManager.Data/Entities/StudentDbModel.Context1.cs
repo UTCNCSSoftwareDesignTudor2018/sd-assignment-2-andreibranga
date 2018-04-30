@@ -28,5 +28,6 @@ namespace Restaurant.Data.Entities
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Subject> Subjects { get; set; }
         public virtual DbSet<Enrollment> Enrollments { get; set; }
+
     }
 }
