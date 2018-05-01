@@ -79,5 +79,53 @@ namespace Restaurant.Business.Repos.Repositories
 
             return user == null ? 0 : user.UserId;
         }
+
+        public IQueryable<UserModel> GetAllStudents()
+        {
+            return ctx.Users.Select(z => new UserModel()
+            {
+                UserId = z.UserId,
+                Id = z.Id,
+                UserName = z.UserName,
+                StudentCurrentYear = z.StudentCurrentYear,
+                StudentIdNumber = z.StudentIdNumber,
+                LastName = z.LastName,
+                FirstName = z.FirstName
+            });
+        }
+
+
+        public IQueryable<EnrollmentModel> GetAllStudentEnrollments(int id)
+        {
+            return ctx.Enrollments.Where(p => p.UserId == id).Select(z => new EnrollmentModel()
+            {
+                UserId = z.UserId,
+                SubjectId = z.SubjectId,
+                Grade = z.Grade ?? 0,
+                Subject = z.Subject.Observations
+            });
+        }
+
+        public void AddEnrollment(int userId, int subjectId, double grade)
+        {
+            Enrollment enrollment=new Enrollment()
+            {
+                UserId = userId,
+                SubjectId = subjectId,
+                Grade=grade
+            };
+
+            ctx.Enrollments.Add(enrollment);
+            ctx.SaveChanges();
+        }
+
+        public void EditEnrollment(int userId,int subjectId, double grade)
+        {
+            var enrollment = ctx.Enrollments.Single(p => p.UserId == userId && p.SubjectId==subjectId);
+            enrollment.Grade = grade;
+            ctx.SaveChanges();
+        }
+
+
     }
 }

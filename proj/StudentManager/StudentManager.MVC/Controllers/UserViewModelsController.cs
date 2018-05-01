@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Web.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 using Restaurant.Business.Repos.Repositories;
 using Restaurant.Data.Entities;
 using Restaurant.MVC.Helpers;
+using Restaurant.MVC.Models;
 using Restaurant.MVC.Models.Account;
 
 namespace Restaurant.MVC.Controllers
@@ -17,10 +19,12 @@ namespace Restaurant.MVC.Controllers
     {
         private StudentDbEntities db;
         private IUserRepository userRepository;
+        private ISubjectRepository subjectRepo;
         public UserViewModelsController()
         {
             this.db = new StudentDbEntities();
             this.userRepository=new UserRepository(db);
+            this.subjectRepo=new SubjectRepository(db);
         }
 
         public ActionResult Index()
@@ -29,6 +33,11 @@ namespace Restaurant.MVC.Controllers
 
             ViewBag.HasProfile = userRepository.GetUserIdentityHasProfile(id);
             return PartialView();
+        }
+
+        public ActionResult AllStudents()
+        {
+            return View();
         }
 
         // GET: UserViewModels/Create
@@ -105,5 +114,116 @@ namespace Restaurant.MVC.Controllers
             }
             base.Dispose(disposing);
         }
+
+        [ValidateInput(false)]
+        public ActionResult StudentsGridViewPartial()
+        {
+            var model = userRepository.GetAllStudents().Select(z => new UserViewModel()
+            {
+                UserId = z.UserId,
+                Id = z.Id,
+                UserName = z.UserName,
+                StudentCurrentYear = z.StudentCurrentYear,
+                StudentIdNumber = z.StudentIdNumber,
+                LastName = z.LastName,
+                FirstName = z.FirstName
+            }).ToList();
+            return PartialView("_StudentsGridViewPartial", model);
+        }
+
+        public ActionResult StudentDetails(int id)
+        {
+            ViewBag.StudentId = id;
+            return View();
+        }
+
+        [ValidateInput(false)]
+        public ActionResult EnrollmentsGridViewPartial(int studentId)
+        {
+            ViewData["StudentId"] = studentId;
+            var model = userRepository.GetAllStudentEnrollments(studentId).Select(z => new EnrollmentViewModel()
+            {
+                UserId = z.UserId,
+                SubjectId = z.SubjectId,
+                Grade = z.Grade,
+                Subject = z.Subject
+            }).ToList();
+            ViewBag.Subjects = subjectRepo.GetAllSubjects().Select(z => new SubjectViewModel()
+            {
+                SubjectYear = z.SubjectYear,
+                SubjectName = z.SubjectName,
+                SubjectId = z.SubjectId,
+                Observations = z.Observations
+            }).ToList();
+            return PartialView("_EnrollmentsGridViewPartial", model);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult EnrollmentsGridViewPartialAddNew(Restaurant.MVC.Models.EnrollmentViewModel item,int studentId)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    userRepository.AddEnrollment(studentId,item.SubjectId,item.Grade.Value);
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            else
+                ViewData["EditError"] = "Please, correct all errors.";
+            ViewData["StudentId"] = studentId;
+            var model = userRepository.GetAllStudentEnrollments(studentId).Select(z => new EnrollmentViewModel()
+            {
+                UserId = z.UserId,
+                SubjectId = z.SubjectId,
+                Grade = z.Grade,
+                Subject = z.Subject
+            }).ToList();
+            ViewBag.Subjects = subjectRepo.GetAllSubjects().Select(z => new SubjectViewModel()
+            {
+                SubjectYear = z.SubjectYear,
+                SubjectName = z.SubjectName,
+                SubjectId = z.SubjectId,
+                Observations = z.Observations
+            }).ToList();
+            return PartialView("_EnrollmentsGridViewPartial", model);
+        }
+        [HttpPost, ValidateInput(false)]
+        public ActionResult EnrollmentsGridViewPartialUpdate(Restaurant.MVC.Models.EnrollmentViewModel item,int studentId)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    userRepository.EditEnrollment(studentId,item.SubjectId,item.Grade.Value);
+                }
+                catch (Exception e)
+                {
+                    ViewData["EditError"] = e.Message;
+                }
+            }
+            else
+                ViewData["EditError"] = "Please, correct all errors.";
+            ViewData["StudentId"] = studentId;
+            var model = userRepository.GetAllStudentEnrollments(studentId).Select(z => new EnrollmentViewModel()
+            {
+                UserId = z.UserId,
+                SubjectId = z.SubjectId,
+                Grade = z.Grade,
+                Subject = z.Subject
+            }).ToList();
+            ViewBag.Subjects = subjectRepo.GetAllSubjects().Select(z => new SubjectViewModel()
+            {
+                SubjectYear = z.SubjectYear,
+                SubjectName = z.SubjectName,
+                SubjectId = z.SubjectId,
+                Observations = z.Observations
+            }).ToList();
+            return PartialView("_EnrollmentsGridViewPartial", model);
+        }
+       
     }
 }

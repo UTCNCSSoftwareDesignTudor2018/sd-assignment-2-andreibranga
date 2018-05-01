@@ -3,67 +3,80 @@
 <!-- Note: This width of the aside area can be adjusted through LESS variables -->
 <aside id="left-panel">
 
-  <!-- User info -->
-  @{ Html.RenderPartial("_CurrentUser"); }
-  <!-- end user info -->
-  <!-- NAVIGATION : This navigation is also responsive
+    <!-- User info -->
+    @{ Html.RenderPartial("_CurrentUser"); }
+    <!-- end user info -->
+    <!-- NAVIGATION : This navigation is also responsive
 
-  To make this navigation dynamic please make sure to link the node
-  (the reference to the nav > ul) after page load. Or the navigation
-  will not initialize.
-  -->
-  <nav>
-    <!-- NOTE: Notice the gaps after each icon usage <i></i>..
-    Please note that these links work a bit different than
-    traditional href="" links. See documentation for details.
+    To make this navigation dynamic please make sure to link the node
+    (the reference to the nav > ul) after page load. Or the navigation
+    will not initialize.
     -->
+    <nav>
+        <!-- NOTE: Notice the gaps after each icon usage <i></i>..
+        Please note that these links work a bit different than
+        traditional href="" links. See documentation for details.
+        -->
 
-    <ul>
-      <li class="@Html.RouteIf("Home", "active")">
-        <a href="#" title="Dashboard">
-          <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span>
-        </a>
         <ul>
-          <li class="@Html.RouteIf("Home/Index", "active")">
-            <a href="@Url.Action("Index", "Home")" title="Dashboard">
-              <span class="menu-item-parent">Overview </span>
-            </a>
-          </li>
+            <li class="@Html.RouteIf("Home", "active")">
+                <a href="#" title="Dashboard">
+                    <i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Dashboard</span>
+                </a>
+                <ul>
+                    <li class="@Html.RouteIf("Home/Index", "active")">
+                        <a href="@Url.Action("Index", "Home")" title="Dashboard">
+                            <span class="menu-item-parent">Overview </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            @if (User.IsInRole("TEACHER") || User.IsInRole("ADMIN"))
+            {
+                <li class="@Html.RouteIf("Subject", "active")">
+                    <a href="#" title="Dashboard">
+                        <i class="fa fa-lg fa-fw  fa-book"></i> <span class="menu-item-parent">Subjects</span>
+                    </a>
+                    <ul>
+                        <li class="@Html.RouteIf("Subject", "active")">
+                            <a href="@Url.Action("Index", "Subject")" title="Dashboard">
+                                <span class="menu-item-parent">Manage Subjects </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="@Html.RouteIf("UserViewModels", "active")">
+                    <a href="#" title="Dashboard">
+                        <i class="fa fa-lg fa-fw  fa-book"></i> <span class="menu-item-parent">Students</span>
+                    </a>
+                    <ul>
+                        <li class="@Html.RouteIf("UserViewModels", "active")">
+                            <a href="@Url.Action("AllStudents", "UserViewModels")" title="Dashboard">
+                                <span class="menu-item-parent">Manage Students </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            }
+
+            <li class="@Html.RouteIf("Manage", "active")">
+                <a href="#" title="User">
+                    <i class="fa fa-lg fa-fw fa fa-user"></i> <span class="menu-item-parent">User</span>
+                </a>
+                <ul>
+                    <li class="@Html.RouteIf("Manage/Index", "active")">
+                        <a href="@Url.Action("Index", "Manage")" title="User">
+                            <span class="menu-item-parent">Manage</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
-      </li>
-
-     @if (User.IsInRole("TEACHER") || User.IsInRole("ADMIN"))
-     {
-         <li class="@Html.RouteIf("Subject", "active")">
-             <a href="#" title="Dashboard">
-                 <i class="fa fa-lg fa-fw  fa-book"></i> <span class="menu-item-parent">Subjects</span>
-             </a>
-             <ul>
-                 <li class="@Html.RouteIf("Subject", "active")">
-                     <a href="@Url.Action("Index", "Subject")" title="Dashboard">
-                         <span class="menu-item-parent">Manage Subjects </span>
-                     </a>
-                 </li>
-             </ul>
-         </li>
-
-     }
-
-      <li class="@Html.RouteIf("Manage", "active")">
-        <a href="#" title="User">
-          <i class="fa fa-lg fa-fw fa fa-user"></i> <span class="menu-item-parent">User</span>
-        </a>
-        <ul>
-          <li class="@Html.RouteIf("Manage/Index", "active")">
-            <a href="@Url.Action("Index", "Manage")" title="User">
-              <span class="menu-item-parent">Manage</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
-  <span class="minifyme" data-action="minifyMenu" style=""> <i class="fa fa-arrow-circle-left hit"></i> </span>
+    </nav>
+    <span class="minifyme" data-action="minifyMenu" style=""> <i class="fa fa-arrow-circle-left hit"></i> </span>
 
 </aside>
 <!-- END NAVIGATION -->

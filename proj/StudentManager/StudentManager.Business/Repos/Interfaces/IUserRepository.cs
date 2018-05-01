@@ -1,4 +1,5 @@
-﻿using Restaurant.Business.Models;
+﻿using System.Linq;
+using Restaurant.Business.Models;
 
 namespace Restaurant.Business.Repos.Repositories
 {
@@ -14,5 +15,9 @@ namespace Restaurant.Business.Repos.Repositories
 
         bool GetUserIdentityHasProfile(string id);
         int GetUserIdForIdentity(string id);
+        IQueryable<UserModel> GetAllStudents();
+        IQueryable<EnrollmentModel> GetAllStudentEnrollments(int id);
+        void AddEnrollment(int userId, int subjectId, double grade);
+        void EditEnrollment(int userId, int subjectId, double grade);
     }
 }
