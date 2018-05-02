@@ -12,13 +12,16 @@ namespace Restaurant.Business.Repos.Repositories
     {
         private StudentDbEntities ctx;
 
-
+        private RepositoryFactory factory;
+        private ReportsRepository reportsRepository;
 
 
 
         public UserRepository(StudentDbEntities ctx)
         {
             this.ctx = ctx;
+            factory=new RepositoryFactory(ctx);
+            reportsRepository = factory.GetReportsRepository();
         }
 
 
@@ -117,6 +120,9 @@ namespace Restaurant.Business.Repos.Repositories
 
             ctx.Enrollments.Add(enrollment);
             ctx.SaveChanges();
+
+
+            reportsRepository.SaveReportForStudent(userId);
         }
 
         public void EditEnrollment(int userId,int subjectId, double grade)
@@ -124,6 +130,8 @@ namespace Restaurant.Business.Repos.Repositories
             var enrollment = ctx.Enrollments.Single(p => p.UserId == userId && p.SubjectId==subjectId);
             enrollment.Grade = grade;
             ctx.SaveChanges();
+
+            reportsRepository.SaveReportForStudent(userId);
         }
 
 

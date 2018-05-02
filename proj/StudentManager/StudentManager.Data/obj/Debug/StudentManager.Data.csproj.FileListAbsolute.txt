@@ -22,3 +22,13 @@ C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\Stude
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\obj\Debug\StudentManager.Data.csproj.CopyComplete
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\obj\Debug\Restaurant.Data.dll
 C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\obj\Debug\Restaurant.Data.pdb
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\DnsClient.dll
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\MongoDB.Bson.dll
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\MongoDB.Driver.Core.dll
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\MongoDB.Driver.dll
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\System.Buffers.dll
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\DnsClient.xml
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\MongoDB.Bson.xml
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\MongoDB.Driver.xml
+C:\Users\andrei\Documents\sd-assignment-2-andreibranga\proj\StudentManager\StudentManager.Data\bin\Debug\MongoDB.Driver.Core.xml
