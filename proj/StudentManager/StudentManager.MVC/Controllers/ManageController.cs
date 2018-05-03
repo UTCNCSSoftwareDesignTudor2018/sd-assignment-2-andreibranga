@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Restaurant.Business;
-using Restaurant.Business.Repos.Repositories;
+using Restaurant.Business.Services.Interfaces;
 using Restaurant.Data.Entities;
 using Restaurant.MVC.Helpers;
 using Restaurant.MVC.Models;
@@ -21,7 +21,7 @@ namespace Restaurant.MVC.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IUserRepository userRepository;
-        private RepositoryFactory repositoryFactory;
+        private ServiceFactory repositoryFactory;
         public ManageController()
         {
         }
@@ -30,7 +30,7 @@ namespace Restaurant.MVC.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
-            repositoryFactory=new RepositoryFactory(new StudentDbEntities());
+            repositoryFactory=new ServiceFactory(new StudentDbEntities());
             userRepository = repositoryFactory.GetUserRepository();
         }
 

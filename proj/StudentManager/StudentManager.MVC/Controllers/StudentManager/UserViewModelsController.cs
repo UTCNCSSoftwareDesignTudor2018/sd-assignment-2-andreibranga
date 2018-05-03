@@ -8,7 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Restaurant.Business;
-using Restaurant.Business.Repos.Repositories;
+using Restaurant.Business.Services.Interfaces;
 using Restaurant.Data.Entities;
 using Restaurant.MVC.Helpers;
 using Restaurant.MVC.Models;
@@ -21,12 +21,12 @@ namespace Restaurant.MVC.Controllers
         private StudentDbEntities db;
         private IUserRepository userRepository;
         private ISubjectRepository subjectRepo;
-        private RepositoryFactory repositoryFactory;
+        private ServiceFactory repositoryFactory;
 
         public UserViewModelsController()
         {
             this.db = new StudentDbEntities();
-            repositoryFactory=new RepositoryFactory(db);
+            repositoryFactory=new ServiceFactory(db);
             this.userRepository = repositoryFactory.GetUserRepository();
             this.subjectRepo = repositoryFactory.GetSubjectRepository();
         }

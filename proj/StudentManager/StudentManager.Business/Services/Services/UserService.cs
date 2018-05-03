@@ -1,26 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Restaurant.Business.Models;
+using Restaurant.Business.Services.Interfaces;
 using Restaurant.Data.Entities;
 
-namespace Restaurant.Business.Repos.Repositories
+namespace Restaurant.Business.Services.Services
 {
-    public class UserRepository : IUserRepository
+    public class UserService : IUserRepository
     {
         private StudentDbEntities ctx;
 
-        private RepositoryFactory factory;
-        private ReportsRepository reportsRepository;
+        private ServiceFactory factory;
+        private ReportsService reportsRepository;
 
 
 
-        public UserRepository(StudentDbEntities ctx)
+        public UserService(StudentDbEntities ctx)
         {
             this.ctx = ctx;
-            factory=new RepositoryFactory(ctx);
+            factory=new ServiceFactory(ctx);
             reportsRepository = factory.GetReportsRepository();
         }
 

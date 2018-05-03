@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Restaurant.Business;
-using Restaurant.Business.Repos.Repositories;
+using Restaurant.Business.Services.Interfaces;
 using Restaurant.Data.Entities;
 using Restaurant.MVC.Models;
 
@@ -15,12 +15,12 @@ namespace Restaurant.MVC.Controllers.StudentManager
     {
         private StudentDbEntities ctx;
         private ISubjectRepository subjectRepository;
-        private RepositoryFactory repositoryFactory;
+        private ServiceFactory repositoryFactory;
 
         public SubjectController()
         {
             this.ctx=new StudentDbEntities();
-            repositoryFactory=new RepositoryFactory(ctx);
+            repositoryFactory=new ServiceFactory(ctx);
             this.subjectRepository = repositoryFactory.GetSubjectRepository();
         }
 

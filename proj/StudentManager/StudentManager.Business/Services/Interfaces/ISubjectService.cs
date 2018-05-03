@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Restaurant.Business.Models;
 
-namespace Restaurant.Business.Repos.Repositories
+namespace Restaurant.Business.Services.Interfaces
 {
     public interface ISubjectRepository
     {

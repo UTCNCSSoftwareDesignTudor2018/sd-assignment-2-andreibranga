@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Restaurant.Business.Models;
-using Restaurant.Data.Entities;
-using MongoDB;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Restaurant.Data.MongoDB;
 using MongoDB.Driver.Linq;
+using Restaurant.Business.Models;
+using Restaurant.Business.Services.Interfaces;
+using Restaurant.Data.Entities;
+using Restaurant.Data.MongoDB;
 
-namespace Restaurant.Business.Repos.Repositories
+namespace Restaurant.Business.Services.Services
 {
-    public class ReportsRepository : IReportsRepository
+    public class ReportsService : IReportsRepository
     {
         private StudentDbEntities ctx;
         private MongoDbConnection connection;
-        public ReportsRepository(StudentDbEntities ctx)
+        public ReportsService(StudentDbEntities ctx)
         {
             this.ctx = ctx;
             this.connection= new MongoDbConnection("StudentManager", "Reports");

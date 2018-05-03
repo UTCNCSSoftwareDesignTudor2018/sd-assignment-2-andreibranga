@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Restaurant.Business.Repos.Repositories;
+using Restaurant.Business.Services.Services;
 using Restaurant.Data.Entities;
 
 namespace Restaurant.Business
@@ -16,19 +16,19 @@ namespace Restaurant.Business
             this.ctx = ctx;
         }
 
-        public UserRepository GetUserRepository()
+        public UserService GetUserService()
         {
-            return new UserRepository(ctx);
+            return new UserService(ctx);
         }
 
-        public SubjectRepository GetSubjectRepository()
+        public SubjectService GetSubjectService()
         {
-            return new SubjectRepository(ctx);
+            return new SubjectService(ctx);
         }
 
-        public ReportsRepository GetReportsRepository()
+        public ReportsService GetReportsService()
         {
-            return new ReportsRepository(ctx);
+            return new ReportsService(ctx);
         }
     }
 }

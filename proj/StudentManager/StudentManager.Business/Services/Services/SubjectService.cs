@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Restaurant.Business.Models;
+using Restaurant.Business.Services.Interfaces;
 using Restaurant.Data.Entities;
 
-namespace Restaurant.Business.Repos.Repositories
+namespace Restaurant.Business.Services.Services
 {
-    public class SubjectRepository : ISubjectRepository
+    public class SubjectService : ISubjectRepository
     {
         private StudentDbEntities ctx;
 
-        public SubjectRepository(StudentDbEntities ctx)
+        public SubjectService(StudentDbEntities ctx)
         {
             this.ctx = ctx;
         }

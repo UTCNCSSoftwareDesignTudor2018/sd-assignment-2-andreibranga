@@ -11,7 +11,7 @@ using System.Web.Script.Serialization;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using Restaurant.Business;
-using Restaurant.Business.Repos.Repositories;
+using Restaurant.Business.Services.Interfaces;
 using Restaurant.MVC.Helpers;
 using Restaurant.Data;
 using Restaurant.Data.Entities;
@@ -22,14 +22,14 @@ namespace Restaurant.MVC.Controllers
   public class HomeController : Controller
   {
       private StudentDbEntities ctx;
-      private RepositoryFactory repositoryFactory;
+      private ServiceFactory repositoryFactory;
       private IUserRepository userRepository;
       private IReportsRepository reportsRepository;
 
       public HomeController()
       {
           this.ctx=new StudentDbEntities();
-          this.repositoryFactory=new RepositoryFactory(ctx);
+          this.repositoryFactory=new ServiceFactory(ctx);
           this.userRepository = repositoryFactory.GetUserRepository();
           this.reportsRepository = repositoryFactory.GetReportsRepository();
       }
